@@ -23,7 +23,7 @@ Angular 6+ (I not tried for previous version - try your luck)
 Install the dependencies and devDependencies and start the server.
 
 ```sh
-$ npm i ngx-mqtt-chat --save
+$ npm i ngx-mqtt ngx-mqtt-chat --save
 ```
 
 For production environments...
@@ -50,7 +50,13 @@ import { NgxMqttChatService } from 'ngx-mqtt-chat';
 export class DashChatComponent implements OnInit {
   topicName = "bhushan=123jnsdfiu3kjsddkfweiurnsdf"
   constructor(private chattingService: NgxMqttChatService) {
-    this.chattingService.connect(environment.mqtt)
+    let mqtt = {
+      manageConnectionManually: false, //this flag will prevent the service to connection automatically
+      host: 'localhost',
+      port: 8083,
+      path: ''
+    }
+    this.chattingService.connect(mqtt)
   }
   ngOnInit() {
     

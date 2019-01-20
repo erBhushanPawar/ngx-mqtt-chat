@@ -1,0 +1,24 @@
+{
+  "name": "ngx-mqtt-chat",
+  "version": "0.0.6",
+  "author": "Bhushan Pawar",
+  "scripts": {
+    "lib-pack": "cd projects/ngx-mqtt-chat && npm version patch && cd ../../ && ng build ngx-mqtt-chat && cd dist/ngx-mqtt-chat && npm pack",
+    "lib-publish": "cd dist/ngx-mqtt-chat && npm publish",
+    "pack-pub": "npm run lib-pack && npm run lib-publish"
+  },
+  "peerDependencies": {
+    "@angular/common": "^7.1.0",
+    "@angular/core": "^7.1.0"
+  },
+  "dependencies": {
+    "ngx-mqtt": "^6.8.3"
+  },
+  "keywords": [
+    "ngx-mqtt-chat",
+    "mqtt",
+    "angular chat",
+    "mqtt chat",
+    "angular 6 chat"
+  ]
+}

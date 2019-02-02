@@ -10,6 +10,21 @@ export class NgxMqttChatService {
   connect(config) {
     this.chattingService.connect(config)
   }
+  deleteMsgQueue(channelId: string) {
+    this.chattingService.getMessages(channelId)
+  }
+  setMessages(channelId: string, messages: any[]) {
+    this.chattingService.setMessages(channelId, messages)
+  }
+  getMessages(channelId: string) {
+    this.chattingService.getMessages(channelId)
+  }
+  pushMessages(channelId: string, msg: any) {
+    if (!this.chattingService.getMessages(channelId)) {
+      this.chattingService.setMessages(channelId, [])
+    }
+    this.chattingService.getMessages(channelId).push(msg)
+  }
   subscribeToTopic(topicName) {
     return this.chattingService.subscribeToQueue(topicName)
   }
@@ -17,4 +32,5 @@ export class NgxMqttChatService {
   publishToTopic(topicName, msg) {
     return this.chattingService.publishToMqtt(topicName, msg)
   }
+
 }

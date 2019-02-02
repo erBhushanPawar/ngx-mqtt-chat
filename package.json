@@ -1,6 +1,6 @@
 {
   "name": "ngx-mqtt-chat",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "author": "Bhushan Pawar",
   "scripts": {
     "lib-pack": "cd projects/ngx-mqtt-chat && npm version patch && cd ../../ && ng build ngx-mqtt-chat && cd dist/ngx-mqtt-chat && npm pack",

@@ -21,7 +21,7 @@ export class ChattingHelperService {
     this.messages.set(channelId, messages)
   }
   getMessages(channelId: string) {
-    return Array.from(this.messages.get(channelId).values())
+    return Array.from((this.messages.get(channelId) || new Map()).values())
   }
   pushMessages(channelId: string, msg: any) {
     if (!this.messages.get(channelId)) {

@@ -20,10 +20,7 @@ export class NgxMqttChatService {
     this.chattingService.getMessages(channelId)
   }
   pushMessages(channelId: string, msg: any) {
-    if (!this.chattingService.getMessages(channelId)) {
-      this.chattingService.setMessages(channelId, [])
-    }
-    this.chattingService.getMessages(channelId).push(msg)
+    this.chattingService.pushMessages(channelId, msg)
   }
   subscribeToTopic(topicName) {
     return this.chattingService.subscribeToQueue(topicName)

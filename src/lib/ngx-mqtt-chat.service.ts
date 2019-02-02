@@ -17,7 +17,7 @@ export class NgxMqttChatService {
     this.chattingService.setMessages(channelId, messages)
   }
   getMessages(channelId: string) {
-    this.chattingService.getMessages(channelId)
+    return this.chattingService.getMessages(channelId)
   }
   pushMessages(channelId: string, msg: any) {
     this.chattingService.pushMessages(channelId, msg)

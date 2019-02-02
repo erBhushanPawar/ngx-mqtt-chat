@@ -14,22 +14,27 @@ export class ChattingHelperService {
   connect(config) {
     this.mqttService.connect(config)
   }
-
-  getMessages(channelId) {
+  deleteMsgQueue(channelId: string) {
+    this.messages.delete(channelId)
+  }
+  setMessages(channelId: string, messages: any[]) {
+    this.messages.set(channelId, messages)
+  }
+  getMessages(channelId: string) {
     return Array.from(this.messages.get(channelId).values())
   }
-  pushMessages(channelId, msg) {
+  pushMessages(channelId: string, msg: any) {
     if (!this.messages.get(channelId)) {
       this.messages.set(channelId, [])
     }
     this.messages.get(channelId).push(msg)
   }
 
-  publishToMqtt(channelId, msg) {
+  publishToMqtt(channelId: string, msg: any) {
     msg.sentOn = new Date().getTime()
     this.mqttService.sendToMqtt(channelId, msg)
   }
-  subscribeToQueue(channelId) {
+  subscribeToQueue(channelId: string) {
     this.mqttService.observeTopic(channelId)
     return this.realtime.getSubscription(channelId)
   }

@@ -8,22 +8,29 @@ import { MqttClientService } from './mqtt-client.service';
 })
 export class ChattingHelperService {
   messages: Map<String, any[]> = new Map();
-  constructor(private realtime: RealtimeHelperService, private mqttService: MqttClientService) {
-
+  constructor(private realtime: RealtimeHelperService,
+    private mqttService: MqttClientService) {
   }
   connect(config) {
     this.mqttService.connect(config)
   }
-  getMessages() {
-    return Array.from(this.messages.values())
+
+  getMessages(channelId) {
+    return Array.from(this.messages.get(channelId).values())
+  }
+  pushMessages(channelId, msg) {
+    if (!this.messages.get(channelId)) {
+      this.messages.set(channelId, [])
+    }
+    this.messages.get(channelId).push(msg)
   }
 
-  publishToMqtt(commId, msg) {
+  publishToMqtt(channelId, msg) {
     msg.sentOn = new Date().getTime()
-    this.mqttService.sendToMqtt(commId, msg)
+    this.mqttService.sendToMqtt(channelId, msg)
   }
-  subscribeToQueue(commId) {
-    this.mqttService.observeTopic(commId)
-    return this.realtime.getSubscription(commId)
+  subscribeToQueue(channelId) {
+    this.mqttService.observeTopic(channelId)
+    return this.realtime.getSubscription(channelId)
   }
 }

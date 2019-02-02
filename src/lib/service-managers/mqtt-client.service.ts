@@ -12,7 +12,8 @@ export class MqttClientService {
 
   }
   connect(config) {
-
+    this.disonnect()
+    console.log("Disconnecting and reconn to other config", config)
     this.mqttService.connect(config)
   }
   disonnect() {

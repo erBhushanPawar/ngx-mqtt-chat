@@ -52,8 +52,9 @@ export class DashChatComponent implements OnInit {
   constructor(private chattingService: NgxMqttChatService) {
     let mqtt = {
       manageConnectionManually: false, //this flag will prevent the service to connection automatically
-      host: 'localhost',
+      hostname: 'localhost',
       port: 8083,
+      protocol: 'ws',
       path: ''
     }
     this.chattingService.connect(mqtt)

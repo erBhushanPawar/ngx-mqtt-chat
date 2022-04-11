@@ -1,9 +1,10 @@
 {
   "name": "ngx-mqtt-chat",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "author": "Bhushan Pawar",
   "scripts": {
-    "lib-pack": "cd projects/ngx-mqtt-chat && npm version patch && cd ../../ && ng build ngx-mqtt-chat && cd dist/ngx-mqtt-chat && npm pack",
+    "dir": "cd projects/ngx-mqtt-chat && npm version patch && cd ../../ ",
+    "lib-pack": "ng build ngx-mqtt-chat && cd dist/ngx-mqtt-chat && npm pack",
     "lib-publish": "cd dist/ngx-mqtt-chat && npm publish",
     "pack-pub": "npm run lib-pack && npm run lib-publish"
   },
